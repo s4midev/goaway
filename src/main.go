@@ -13,6 +13,7 @@ type Config struct {
 	SonarrUrl     string `envconfig:"SONARR_URL" required:"true"`
 	SonarrApiKey  string `envconfig:"SONARR_API_KEY" required:"true"`
 	CheckInterval int    `envconfig:"CHECK_INTERVAL" default:"5000"`
+	Webhook       string `envconfig:"WEBHOOK"`
 }
 
 func main() {

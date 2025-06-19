@@ -27,9 +27,10 @@ func scanRadarr(cfg *Config) {
 			fmt.Println(s.GetTitle())
 			for _, m := range s.GetMessages() {
 				fmt.Println(m)
-				if strings.Contains(m, "Caution") {
+				if strings.Contains(m, "Caution") || strings.Contains(m, "unsupported extension") {
 					fmt.Println("Release " + r.GetTitle() + " has a warning")
 					client.QueueAPI.DeleteQueue(context.Background(), *r.Id).RemoveFromClient(true).Blocklist(true).Execute()
+					notifyWebhook(cfg, "Radarr download `"+r.GetTitle()+"` was removed", m)
 				}
 			}
 		}

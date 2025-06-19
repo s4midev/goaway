@@ -30,6 +30,7 @@ func scanSonarr(cfg *Config) {
 				if strings.Contains(m, "Caution") || strings.Contains(m, "unsupported extension") {
 					fmt.Println("Episode " + r.GetTitle() + " has a warning")
 					client.QueueAPI.DeleteQueue(context.Background(), *r.Id).RemoveFromClient(true).Blocklist(true).Execute()
+					notifyWebhook(cfg, "Sonarr download `"+r.GetTitle()+"` was removed", m)
 				}
 			}
 		}

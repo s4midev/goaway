@@ -12,3 +12,4 @@ services:
       - GOAWAY_SONARR_API_KEY=sonarrKey
       # ms
       - GOAWAY_CHECK_INTERVAL=1000
+      - GOAWAY_WEBHOOK=https://discord.com/api/webhooks/something
