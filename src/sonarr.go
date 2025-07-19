@@ -24,9 +24,7 @@ func scanSonarr(cfg *Config) {
 
 	for _, r := range result.GetRecords() {
 		for _, s := range r.StatusMessages {
-			fmt.Println(s.GetTitle())
 			for _, m := range s.GetMessages() {
-				fmt.Println(m)
 				if strings.Contains(m, "Caution") || strings.Contains(m, "unsupported extension") {
 					fmt.Println("Episode " + r.GetTitle() + " has a warning")
 					client.QueueAPI.DeleteQueue(context.Background(), *r.Id).RemoveFromClient(true).Blocklist(true).Execute()
